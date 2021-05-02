@@ -13,9 +13,13 @@ startbut=Button(fenetre, text= "Start Game", font="Helvetica 30 bold")
 startbut.place(relx=0.5, rely=0.40, anchor=CENTER)
 
 
-#paramètres boutton difficulté
-diffbut=Button(fenetre, text= "difficulty", bg="green", font="Helvetica 20 bold")
-diffbut.place(relx=0.5, rely=0.55, anchor=CENTER)
+#paramètres optionMenu difficulté
+options=["vers de terre", "couleuvre", "python"]
+clicked=StringVar()
+clicked.set("difficulty")
+
+drop=OptionMenu(fenetre, clicked, *options)
+drop.place(relx=0.5, rely=0.55, anchor=CENTER)
 
 
 #paramètres boutton high score
