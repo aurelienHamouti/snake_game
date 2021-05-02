@@ -53,7 +53,8 @@ def open():
 	fenetrehelp =Toplevel()
 	fenetrehelp.title("I'm here to help you!")
 	fenetrehelp.geometry("600x600+1700+150")
-	fenetrehelp.config(background="#fc8066")
+	fenetrehelp.config(background="#eff2d9")
+	
 	
 	#bouton pour fermer la fenêtre help
 	boutfermhelp=Button(fenetrehelp, text="fermer l'aide", command=fenetrehelp.destroy)
