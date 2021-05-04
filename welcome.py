@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from Tkinter import *
 import tkFont
 import snake
@@ -113,5 +112,7 @@ class Welcome(Frame):
 
 def start():
     root = Tk()
-    program = Welcome(root, "Snake DCS", "800x500+100+100", "#00cc00")
+    root.iconbitmap(r'..\ressources\blackSnakeIcon.ico')
+    #iconphoto(True, PhotoImage(file="./ressources/blackSnakeIcon.ico"))
+    program = Welcome(root, "Snake DCS", "800x500+250+50", "#00cc00")
     program.mainloop()

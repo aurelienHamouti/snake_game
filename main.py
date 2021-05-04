@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import welcome 
 import snake
-
-welcome.start() #Start welcome page
+try:
+    welcome.start() #Start welcome page
+except error: 
+    pass
