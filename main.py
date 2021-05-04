@@ -1,3 +1,5 @@
 # -*- coding: utf-8 -*-
+import welcome 
+import snake
 
-from Tkinter import *
+welcome.start() #Start welcome page
