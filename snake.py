@@ -6,7 +6,7 @@ from random import randrange
 
 class Snake(Frame):
 
-    def __init__(self, snakeWindow=None, myTitle=None, myGeometry=None, backgroundColor=None, level="slug"):
+    def __init__(self, snakeWindow=None, myTitle=None, myGeometry=None, backgroundColor=None, level="slug", canvasColor="black"):
 
         #model
         Frame.__init__(self, snakeWindow)
@@ -15,111 +15,128 @@ class Snake(Frame):
         self._me.geometry(myGeometry)
         self._me.config(background=backgroundColor)
 
-        x = 245
-        y = 24        
-        dx, dy = 10, 10
-        flag = 0
-        direction = 'haut'
-        Serpent=[[x,y],[x+2.5,y+2.5],[x+5,y+5],[0,0]]
-
-        pX = randrange(5, 495)
-        pY = randrange(5, 495)
-
-        can = Canvas(self._me , width=500, height=500, bg='black')
-        can.pack(side=TOP, padx=5, pady=5)
+        self.x = 245
+        self.y = 24       
+        self.dx = 10
+        self.dy = 10
+        self.pX = randrange(5, 495)#random start x position
+        self.pY = randrange(5, 495)#random start y position
+        self.flag = 0
+        self.pomme = 0
+        self.direction = 'top'
+        self.serpent=[[self.x,self.y],[self.x+2.5,self.y+2.5],[self.x+5,self.y+5],[0,0]]
+        self.canvas = Canvas(self._me , width=500, height=500, bg=canvasColor)
+        self.canvas.pack(side=TOP, padx=5, pady=5)
 
         #view
         self.view_interface()
 
+        #Controler
+        self.newGame()
+
     def view_interface(self):
 
-        oval1=can.create_oval(Serpent[1][0], Serpent[1][1], Serpent[1][0] +10, Serpent[1][1]+10, outline='green', fill='red')
-        oval = can.create_oval(Serpent[0][0], Serpent[0][1], Serpent[0][0]+10, Serpent[0][1]+10, outline='green', fill='green')
-        pomme = can.create_rectangle(pX, pY, pX+5, pY+5, outline='green', fill='black')
+        oval1=self.canvas.create_oval(self.serpent[1][0], self.serpent[1][1], self.serpent[1][0] +10, self.serpent[1][1]+10, outline='green', fill='red')
+        oval = self.canvas.create_oval(self.serpent[0][0], self.serpent[0][1], self.serpent[0][0]+10, self.serpent[0][1]+10, outline='green', fill='green')
+        self.pomme = self.canvas.create_rectangle(self.pX, self.pY, self.pX+5, self.pY+5, outline='green', fill='black')
+
+        b1 = Button(self._me, text='Lancer', command=self.newGame, bg='black' , fg='green')
+        b1.pack(side=LEFT, padx=5, pady=5)
+
+        b2 = Button(self._me, text='Quitter', command=self._me.destroy, bg='black' , fg='green')
+        b2.pack(side=RIGHT, padx=5, pady =5)
+
+        tex1 = Label(self._me, text="Cliquez sur 'New Game' pour commencer le jeu.", bg='black' , fg='green')
+        tex1.pack(padx=0, pady=11)
 
         #events manage
-        fen.bind('<d>', turnRight)
-        fen.bind('<q>', turnLeft)
-        fen.bind('<z>' , turnTop)
-        fen.bind('<s>', turnBottom)
+        self._me.bind('<d>', self.turnRight)
+        self._me.bind('<a>', self.turnLeft)
+        self._me.bind('<w>' , self.turnTop)
+        self._me.bind('<s>', self.turnBottom)
 
-    def move():
-        global x
-        global y,pX,pY
-        global Serpent
-        can.delete('all')
-        i=len(Serpent)-1
+    def move(self):
+        #global x
+        #global y,pX,pY
+        #global Serpent
+        self.canvas.delete('all')
+        i=len(self.serpent)-1
         j=0
         while i > 0:
-            Serpent[i][0]=Serpent[i-1][0]
-            Serpent[i][1]=Serpent[i-1][1]
-            can.create_oval(Serpent[i][0], Serpent[i][1], Serpent[i][0] +10, Serpent[i][1]+10,outline='green', fill='black')
+            self.serpent[i][0]=self.serpent[i-1][0]
+            self.serpent[i][1]=self.serpent[i-1][1]
+            self.canvas.create_oval(self.serpent[i][0], self.serpent[i][1], self.serpent[i][0] +10, self.serpent[i][1]+10,outline='green', fill='black')
             i=i-1
-        can.create_rectangle(pX, pY, pX+5, pY+5, outline='green', fill='black')
+        self.canvas.create_rectangle(self.pX, self.pY, self.pX+5, self.pY+5, outline='green', fill='black')
 
-        if direction  == 'gauche':
-            Serpent[0][0]  = Serpent[0][0] - dx
-        if Serpent[0][0] < 0:
-            Serpent[0][0] = 493
-        elif direction  == 'droite':
-            Serpent[0][0]  = Serpent[0][0] + dx
-            if Serpent[0][0] > 493:
-                Serpent[0][0] = 0
-        elif direction  == 'haut':
-            Serpent[0][1]  = Serpent[0][1] - dy
-            if Serpent[0][1] < 0:
-                Serpent[0][1] = 493
-        elif direction  == 'bas':
-            Serpent[0][1]  = Serpent[0][1] + dy
-            if Serpent[0][1] > 493:
-                Serpent[0][1] = 0
-        can.create_oval(Serpent[0][0], Serpent[0][1], Serpent[0][0]+10, Serpent[0][1]+10,outline='green', fill='blue')
-        test()
-        test()
+        if self.direction  == 'left':
+            self.serpent[0][0]  = self.serpent[0][0] - self.dx
+        if self.serpent[0][0] < 0:
+            self.serpent[0][0] = 493
+        elif self.direction  == 'right':
+            self.serpent[0][0]  = self.serpent[0][0] + self.dx
+            if self.serpent[0][0] > 493:
+                self.serpent[0][0] = 0
+        elif self.direction  == 'top':
+            self.serpent[0][1]  = self.serpent[0][1] - self.dy
+            if self.serpent[0][1] < 0:
+                self.serpent[0][1] = 493
+        elif self.direction  == 'down':
+            self.serpent[0][1]  = self.serpent[0][1] + self.dy
+            if self.serpent[0][1] > 493:
+                self.serpent[0][1] = 0
+        self.canvas.create_oval(self.serpent[0][0], self.serpent[0][1], self.serpent[0][0]+10, self.serpent[0][1]+10,outline='green', fill='blue')
+        self.test()
+        self.test()
     
-        if flag != 0:
-            fen.after(60, move)
+        if self.flag != 0:
+            self._me.after(60, self.move)
 
-    def turnRight():
-        global direction
-        direction = 'droite'
+    def turnRight(self, e):
+        #global direction
+        self.direction = 'right'
 
-    def turnLeft():
-        global direction
-        direction = 'gauche'
+    def turnLeft(self, e):
+        #global direction
+        self.direction = 'left'
 
-    def turnTop():
-        global direction
-        direction = 'haut'
+    def turnTop(self, e):
+         #global direction
+        self.direction = 'top'
 
-    def turnBottom():
-        global direction
-        direction = 'bas'
+    def turnBottom(self, e):
+        #global direction
+        self.direction = 'down'
 
-    def test():
-        global pomme
-        global x,y,pX,pY
-        global Serpent
-        if Serpent[1][0]>pX-7 and  Serpent[1][0]<pX+7:        
-            if Serpent[1][1]>pY-7 and Serpent[1][1]<pY+7:
+    def test(self):
+
+        if self.serpent[1][0]>self.pX-7 and  self.serpent[1][0]<self.pX+7:        
+            if self.serpent[1][1]>self.pY-7 and self.serpent[1][1]<self.pY+7:
                 #On remet une pomme au hasard
-                pX = randrange(5, 495)
-                pY = randrange(5, 495)
-                can.coords(pomme,pX, pY, pX+5, pY+5)
-                #On joute un nouveau point au serpent
-                Serpent.append([0,0])
+                self.pX = randrange(5, 495)
+                self.pY = randrange(5, 495)
+                self.canvas.coords(self.pomme,self.pX, self.pY, self.pX+5, self.pY+5)
+                #On joute un nouveau point au self.serpent
+                self.serpent.append([0,0])
                 #print(Serpent)
+    def newGame(self):
+        #global pX,pY
+        #global flag
+        if self.flag == 0:
+            self.flag = 1
+        self.move()
 
-    def win():
+
+    def win(self):
         pass
 
-    def lose():
+    def lose(self):
         pass
 
-    def exit():
+    def exit(self):
         pass
 
-def start(level):
+def startGame(level):
     root = Tk()
-    program = Snake(root, "Snake DCS", "800x500+100+100", "#00cc00", level)
+    program = Snake(root, "Snake DCS", "800x500+100+100", "#00cc00", level, "#00001a")
     program.mainloop()

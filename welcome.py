@@ -19,7 +19,7 @@ class Welcome(Frame):
         self._welcome = Label(text = "Welcome on the DCS snake game ssssss !")
         self._levelChoice = Label(text = "Choice your level :")
         self._slugLevel = Button(text = "Slug")
-        self._MedusaLevel = Button(text = "Medusa")
+        self._CoralLevel = Button(text = "Coral")
         self._pythonLevel = Button(text = "Python")
         self._exit = Button(text = "Exit")
         
@@ -60,11 +60,11 @@ class Welcome(Frame):
         self._slugLevel.pack()
         self._slugLevel.place(relx=0.325, rely=0.40, anchor=CENTER)
        
-        #medusa level button
-        self._MedusaLevel['font'] = levelFont
-        self._MedusaLevel['activebackground'] = "#ffff00"
-        self._MedusaLevel.pack()
-        self._MedusaLevel.place(relx=0.5, rely=0.40, anchor=CENTER)
+        #coral level button
+        self._CoralLevel['font'] = levelFont
+        self._CoralLevel['activebackground'] = "#ffff00"
+        self._CoralLevel.pack()
+        self._CoralLevel.place(relx=0.5, rely=0.40, anchor=CENTER)
 
         #python level button
         self._pythonLevel['font'] = levelFont
@@ -90,9 +90,9 @@ class Welcome(Frame):
         self._slugLevel.bind("<Enter>", mouseOver)
         self._slugLevel.bind("<Leave>", mouseLeave)
 
-        self._MedusaLevel['command'] = self.medusa
-        self._MedusaLevel.bind("<Enter>", mouseOver)
-        self._MedusaLevel.bind("<Leave>", mouseLeave)
+        self._CoralLevel['command'] = self.coral
+        self._CoralLevel.bind("<Enter>", mouseOver)
+        self._CoralLevel.bind("<Leave>", mouseLeave)
 
         self._pythonLevel['command'] = self.python
         self._pythonLevel.bind("<Enter>", mouseOver)
@@ -100,13 +100,13 @@ class Welcome(Frame):
 
     # CONTROLEUR
     def slug(e):
-        snake.start("slug")
+        snake.startGame("slug")
 
-    def medusa(e):
-        pass
+    def coral(e):
+        snake.startGame("coral")
 
     def python(e):
-        pass
+        snake.startGame("python")
 
     def exit(self):
         self._me.destroy()
