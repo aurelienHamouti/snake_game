@@ -4,4 +4,4 @@ import snake
 try:
     welcome.start() #Start welcome page
 except error: 
-    pass
+    print(error)

@@ -21,6 +21,7 @@ class Welcome(Frame):
         self._CoralLevel = Button(text = "Coral")
         self._pythonLevel = Button(text = "Python")
         self._exit = Button(text = "Exit")
+        self._menubar = Menu(self)
         
         #view
         self.view_interface()
@@ -77,6 +78,15 @@ class Welcome(Frame):
         self._exit.pack()
         self._exit.place(relx=0.5, rely=0.90, anchor=CENTER)
 
+        #menu
+        menu = Menu(self._menubar, tearoff=0)
+        self._menubar.add_cascade(label="Menu", menu=menu)
+        menu.add_command(label="Game history", command=self.showHistory)
+        menu.add_command(label="Help", command=self.showHelp)
+        menu.add_separator()
+        menu.add_command(label="Quitter", command=self.exit)
+        
+
         def mouseOver(e):
             e.widget['background'] = "#80d4ff"
 
@@ -97,6 +107,8 @@ class Welcome(Frame):
         self._pythonLevel.bind("<Enter>", mouseOver)
         self._pythonLevel.bind("<Leave>", mouseLeave)
 
+        self._me.config(menu = self._menubar)
+
     # CONTROLEUR
     def slug(e):
         snake.startGame("slug")
@@ -106,6 +118,12 @@ class Welcome(Frame):
 
     def python(e):
         snake.startGame("python")
+
+    def showHistory(self):
+        pass
+
+    def showHelp(self):
+        pass
 
     def exit(self):
         self._me.destroy()

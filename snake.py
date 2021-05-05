@@ -24,10 +24,9 @@ class Snake(Frame):
         self._flag = 0
         self._cible = 0
         self._direction = 'top'
-        self._serpent = [[self._x,self._y],[self._x+2.5,self._y+2.5],[self._x+5,self._y+5],[0,0]]
+        self._snake = 0
         self._canvas = Canvas(self._me , width=600, height=500, bg=canvasColor)
-        self._canvas.pack(side=TOP, padx=5, pady=5)
-        self._exitButton = Button(self._me, text='Exit', command=self._me.destroy, bg='black' , fg='green')
+        self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
 
         if(level=="slug"):
             self._speed = 200
@@ -43,13 +42,12 @@ class Snake(Frame):
 
         #Controler
         self.newGame()
-        self.play_ambiance_music()
 
     def view_interface(self):
-
-        oval1 = self._canvas.create_oval(self._serpent[1][0], self._serpent[1][1], self._serpent[1][0] +10, self._serpent[1][1]+10, outline='green', fill='red')
-        oval = self._canvas.create_oval(self._serpent[0][0], self._serpent[0][1], self._serpent[0][0]+10, self._serpent[0][1]+10, outline='green', fill='green')
+        
+        self._snake = [[self._x,self._y],[self._x+2.5,self._y+2.5],[self._x+5,self._y+5],[0,0]]
         self._cible = self._canvas.create_rectangle(self._pX, self._pY, self._pX+5, self._pY+5, outline='green', fill='black')
+        self._canvas.pack(side=TOP, padx=5, pady=5)
         self._exitButton['highlightcolor'] = "red"
         self._exitButton['activebackground'] = "#ffff00"
         self._exitButton.pack(side=TOP, padx=5, pady =5)
@@ -62,32 +60,32 @@ class Snake(Frame):
 
     def move(self):
         self._canvas.delete('all')
-        i=len(self._serpent)-1
         j=0
+        i=len(self._snake)-1
         while i > 0:
-            self._serpent[i][0]=self._serpent[i-1][0]
-            self._serpent[i][1]=self._serpent[i-1][1]
-            self._canvas.create_oval(self._serpent[i][0], self._serpent[i][1], self._serpent[i][0] +10, self._serpent[i][1]+10,outline='green', fill='black')
+            self._snake[i][0]=self._snake[i-1][0]
+            self._snake[i][1]=self._snake[i-1][1]
+            self._canvas.create_oval(self._snake[i][0], self._snake[i][1], self._snake[i][0] +10, self._snake[i][1]+10,outline='green', fill='black')
             i=i-1
-        self._canvas.create_rectangle(self._pX, self._pY, self._pX+5, self._pY+5, outline='green', fill='black')
+        self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='green', fill='black')
 
-        if self._direction  == 'left':
-            self._serpent[0][0]  = self._serpent[0][0] - self._dx
-        if self._serpent[0][0] < 0:
-            self._serpent[0][0] = 593
-        elif self._direction  == 'right':
-            self._serpent[0][0]  = self._serpent[0][0] + self._dx
-            if self._serpent[0][0] > 593:
-                self._serpent[0][0] = 0
+        if self._direction  == 'right':
+            self._snake[0][0]  = self._snake[0][0] + self._dx
+            if self._snake[0][0] > 593:
+                self._snake[0][0] = 0
+        elif self._direction  == 'left':
+            self._snake[0][0]  = self._snake[0][0] - self._dx
+            if self._snake[0][0] < 0:
+                self._snake[0][0] = 593
         elif self._direction  == 'top':
-            self._serpent[0][1]  = self._serpent[0][1] - self._dy
-            if self._serpent[0][1] < 0:
-                self._serpent[0][1] = 493
+            self._snake[0][1]  = self._snake[0][1] - self._dy
+            if self._snake[0][1] < 0:
+                self._snake[0][1] = 493
         elif self._direction  == 'down':
-            self._serpent[0][1]  = self._serpent[0][1] + self._dy
-            if self._serpent[0][1] > 493:
-                self._serpent[0][1] = 0
-        self._canvas.create_oval(self._serpent[0][0], self._serpent[0][1], self._serpent[0][0]+10, self._serpent[0][1]+10,outline='green', fill='blue')
+            self._snake[0][1]  = self._snake[0][1] + self._dy
+            if self._snake[0][1] > 493:
+                self._snake[0][1] = 0
+        self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10,outline='green', fill='blue')
         self.test()
         self.test()
         if self._flag != 0:
@@ -106,10 +104,12 @@ class Snake(Frame):
         self._direction = 'down'
 
     def test(self):
-        if self._serpent[1][0]>self._pX-7 and  self._serpent[1][0]<self._pX+7:        
-            if self._serpent[1][1]>self._pY-7 and self._serpent[1][1]<self._pY+7:
+        if self._snake[1][0]>self._pX-7 and  self._snake[1][0]<self._pX+7:        
+            if self._snake[1][1]>self._pY-7 and self._snake[1][1]<self._pY+7:
                 self.win()#the snake catch the cible !
+
     def newGame(self):
+        self.play_ambiance_music()
         if self._flag == 0:
             self._flag = 1
         self.move()
@@ -127,14 +127,16 @@ class Snake(Frame):
         self._pX = randrange(5, 495)#new random cible
         self._pY = randrange(5, 495)
         self._canvas.coords(self._cible,self._pX, self._pY, self._pX+5, self._pY+5)
-        self._serpent.append([0,0])#lengthen the snake
+        self._snake.append([0,0])#lengthen the snake
         self.play_win_music()#noise catch
 
     def lose(self):
         pass
+        #PlaySound(r"..\ressources\lose.wav", SND_ASYNC)
 
     def exit(self):
-        pass
+        PlaySound(None, SND_PURGE)
+        self._me.destroy()
 
 def startGame(level):
     root = Tk()
