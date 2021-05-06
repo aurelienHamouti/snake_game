@@ -15,8 +15,8 @@ class Snake(Frame):
         self._me.title(myTitle)
         self._me.geometry(myGeometry)
         self._me.config(background=backgroundColor)
-        self._x = 245
-        self._y = 24       
+        self._x = 250
+        self._y = 300       
         self._dx = 10
         self._dy = 10
         self._pX = randrange(5, 595)#random start x position
@@ -25,7 +25,9 @@ class Snake(Frame):
         self._cible = 0
         self._direction = 'top'
         self._snake = 0
-        self._canvas = Canvas(self._me , width=600, height=500, bg=canvasColor)
+        self._widthCanvas = 600
+        self._heightCanvas = 500
+        self._canvas = Canvas(self._me , width= self._widthCanvas, height=self._heightCanvas, bg=canvasColor)
         self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
 
         if(level=="slug"):
@@ -54,6 +56,7 @@ class Snake(Frame):
 
         #events manage
         self._me.bind('<d>', self.turnRight)
+        #self._me.bind('<ARROW_UP>', self.turnRight)
         self._me.bind('<a>', self.turnLeft)
         self._me.bind('<w>' , self.turnTop)
         self._me.bind('<s>', self.turnBottom)
@@ -71,22 +74,29 @@ class Snake(Frame):
 
         if self._direction  == 'right':
             self._snake[0][0]  = self._snake[0][0] + self._dx
-            if self._snake[0][0] > 593:
-                self._snake[0][0] = 0
+            if self._snake[0][0] > self._widthCanvas:
+                #self._snake[0][0] = 0
+                self.lose()
+                return 0
         elif self._direction  == 'left':
             self._snake[0][0]  = self._snake[0][0] - self._dx
             if self._snake[0][0] < 0:
-                self._snake[0][0] = 593
+                #self._snake[0][0] = self._widthCanvas
+                self.lose()
+                return 0
         elif self._direction  == 'top':
             self._snake[0][1]  = self._snake[0][1] - self._dy
             if self._snake[0][1] < 0:
-                self._snake[0][1] = 493
+                #self._snake[0][1] = self._heightCanvas
+                self.lose()
+                return 0
         elif self._direction  == 'down':
             self._snake[0][1]  = self._snake[0][1] + self._dy
-            if self._snake[0][1] > 493:
-                self._snake[0][1] = 0
+            if self._snake[0][1] > self._heightCanvas:
+                #self._snake[0][1] = 0
+                self.lose()
+                return 0
         self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10,outline='green', fill='blue')
-        self.test()
         self.test()
         if self._flag != 0:
             self._me.after(self._speed, self.move)
@@ -115,24 +125,31 @@ class Snake(Frame):
         self.move()
 
     def play_win_music(self):
-        PlaySound(r"..\ressources\win.wav", SND_ASYNC)
+        PlaySound(r"..\ressources\sounds\eat.wav", SND_ASYNC)
         #winsound.Beep(500, 100)
-        time.sleep(1)
+        time.sleep(0.4)
         self.play_ambiance_music()
 
     def play_ambiance_music(self):
-        PlaySound(r"..\ressources\ambiance.wav", SND_ASYNC)
+        PlaySound(r"..\ressources\sounds\ambiance.wav", SND_ASYNC)
 
     def win(self):
-        self._pX = randrange(5, 495)#new random cible
-        self._pY = randrange(5, 495)
+        self._pX = randrange(20, self._widthCanvas-20)#new random cible
+        self._pY = randrange(20, self._heightCanvas-20)
         self._canvas.coords(self._cible,self._pX, self._pY, self._pX+5, self._pY+5)
         self._snake.append([0,0])#lengthen the snake
         self.play_win_music()#noise catch
+        #write score
 
     def lose(self):
-        pass
-        #PlaySound(r"..\ressources\lose.wav", SND_ASYNC)
+        PlaySound(r"..\ressources\sounds\lose.wav", SND_ASYNC)
+        time.sleep(0.8)
+        self._snake[0][0] = self._x
+        self._snake[0][1] = self._y
+        self._pX = randrange(20, self._widthCanvas-20)#new random cible
+        self._pY = randrange(20, self._heightCanvas-20)
+        self._canvas.coords(self._cible,self._pX, self._pY, self._pX+5, self._pY+5)
+        self.move()
 
     def exit(self):
         PlaySound(None, SND_PURGE)
@@ -140,6 +157,6 @@ class Snake(Frame):
 
 def startGame(level):
     root = Tk()
-    root.iconbitmap(r'..\ressources\blackSnakeIcon.ico')
+    root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()
