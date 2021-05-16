@@ -163,11 +163,11 @@ class Snake(Frame):
         self.play_ambiance_music()
 
     def exit(self):
-        PlaySound(None, SND_PURGE)
+        pygame.mixer.music.stop()
         self._me.destroy()
 
 def startGame(level):
     root = Tk()
-    #root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
+    root.iconbitmap(r'ressources\images\blackSnakeIcon.ico')
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()

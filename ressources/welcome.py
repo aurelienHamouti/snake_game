@@ -130,7 +130,7 @@ class Welcome(Frame):
 
 def start():
     root = Tk()
-    #root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
+    root.iconbitmap(r'ressources\images\blackSnakeIcon.ico')
     #iconphoto(True, PhotoImage(file="./ressources/blackSnakeIcon.ico"))
     program = Welcome(root, "Snake DCS", "800x500+250+50", "#00cc00")
     program.mainloop()
