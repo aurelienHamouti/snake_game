@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from Tkinter import *
-import tkFont
+from tkinter import *
 from random import randrange
 from winsound import *
+import pygame
 import time
 
 class Snake(Frame):
@@ -29,6 +29,11 @@ class Snake(Frame):
         self._heightCanvas = 500
         self._canvas = Canvas(self._me , width= self._widthCanvas, height=self._heightCanvas, bg=canvasColor)
         self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
+        pygame.mixer.pre_init(44100, -16, 2, 1024)
+        pygame.mixer.init()
+        
+        
+        
 
         if(level=="slug"):
             self._speed = 200
@@ -125,13 +130,17 @@ class Snake(Frame):
         self.move()
 
     def play_win_music(self):
-        PlaySound(r"..\ressources\sounds\eat.wav", SND_ASYNC)
+        #PlaySound(r"..\ressources\sounds\eat.wav", SND_ASYNC)
+        winSound = pygame.mixer.music.load(r"ressources\sounds\eat.wav")
+        winSound = pygame.mixer.music.play(0)
+        pygame.mixer.music.play(0)
         #winsound.Beep(500, 100)
         time.sleep(0.4)
         self.play_ambiance_music()
 
     def play_ambiance_music(self):
-        PlaySound(r"..\ressources\sounds\ambiance.wav", SND_ASYNC)
+        ambianceSound = pygame.mixer.music.load(r"ressources\sounds\ambiance.wav")
+        ambianceSound = pygame.mixer.music.play(-1)
 
     def win(self):
         self._pX = randrange(20, self._widthCanvas-20)#new random cible
@@ -142,7 +151,8 @@ class Snake(Frame):
         #write score
 
     def lose(self):
-        PlaySound(r"..\ressources\sounds\lose.wav", SND_ASYNC)
+        loseSound = pygame.mixer.music.load(r"ressources\sounds\lose.wav")
+        loseSound = pygame.mixer.music.play(0)
         time.sleep(0.8)
         self._snake[0][0] = self._x
         self._snake[0][1] = self._y
@@ -150,6 +160,7 @@ class Snake(Frame):
         self._pY = randrange(20, self._heightCanvas-20)
         self._canvas.coords(self._cible,self._pX, self._pY, self._pX+5, self._pY+5)
         self.move()
+        self.play_ambiance_music()
 
     def exit(self):
         PlaySound(None, SND_PURGE)
@@ -157,6 +168,6 @@ class Snake(Frame):
 
 def startGame(level):
     root = Tk()
-    root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
+    #root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()

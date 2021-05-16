@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from Tkinter import *
-import tkFont
-import snake
+from tkinter import *
+import tkinter.font as TkFont
+from ressources import snake as snake
 
 class Welcome(Frame):
 
@@ -35,9 +35,9 @@ class Welcome(Frame):
         #self._me.grid_rowconfigure(0, weight=1)
         #self._me.grid_columnconfigure(0, weight=1)
 
-        titleFont = tkFont.Font(family="Lucida Calligraphy", size=20, weight="bold")
-        levelLabelFont = tkFont.Font(family="Great Vibes", size=15, weight="bold")
-        levelFont = tkFont.Font(family="Showcard Gothic", size=20, weight="bold")
+        titleFont = TkFont.Font(family="Lucida Calligraphy", size=20, weight="bold")
+        levelLabelFont = TkFont.Font(family="Great Vibes", size=15, weight="bold")
+        levelFont = TkFont.Font(family="Showcard Gothic", size=20, weight="bold")
 
         #welcome message label
         self._welcome['font'] = titleFont
@@ -130,7 +130,7 @@ class Welcome(Frame):
 
 def start():
     root = Tk()
-    root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
+    #root.iconbitmap(r'..\ressources\images\blackSnakeIcon.ico')
     #iconphoto(True, PhotoImage(file="./ressources/blackSnakeIcon.ico"))
     program = Welcome(root, "Snake DCS", "800x500+250+50", "#00cc00")
     program.mainloop()
