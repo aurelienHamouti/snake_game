@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import ressources.welcome as welcomePage
+import src.welcome as welcomePage
 try:
     welcomePage.start() #Start welcome page
 except ValueError:

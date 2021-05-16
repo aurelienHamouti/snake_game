@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from tkinter import *
 import tkinter.font as TkFont
-from ressources import snake as snake
+from src import snake as snake
 
 class Welcome(Frame):
 

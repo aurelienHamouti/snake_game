@@ -1,0 +1,20 @@
+16/05/2021 : 19:00:36 snake eat an apple ! -> new snake lenght is 5
+16/05/2021 : 19:00:38 snake eat an apple ! -> new snake lenght is 6
+16/05/2021 : 19:03:05 snake eat an apple ! -> new snake lenght is 5
+16/05/2021 : 19:03:08 snake eat an apple ! -> new snake lenght is 6
+16/05/2021 : 19:03:12 snake eat an apple ! -> new snake lenght is 7
+16/05/2021 : 19:03:12 snake eat an apple ! -> new snake lenght is 8
+16/05/2021 : 19:09:39 new game party has begun 
+16/05/2021 : 19:09:43 snake eat an apple ! -> new snake lenght is 5
+16/05/2021 : 19:09:49 snake eat an apple ! -> new snake lenght is 6
+16/05/2021 : 19:09:58 snake eat an apple ! -> new snake lenght is 7
+16/05/2021 : 19:10:03 snake eat an apple ! -> new snake lenght is 8
+16/05/2021 : 19:12:04 new game party has begun 
+16/05/2021 : 19:12:58 new game party has begun 
+16/05/2021 : 19:13:17 new game party has begun 
+16/05/2021 : 19:14:44 new game party has begun 
+16/05/2021 : 19:14:54 snake eat an apple ! -> new snake lenght is 5
+16/05/2021 : 19:14:59 snake eat an apple ! -> new snake lenght is 6
+16/05/2021 : 19:15:04 snake eat an apple ! -> new snake lenght is 7
+16/05/2021 : 19:15:20 new game party has begun 
+16/05/2021 : 19:15:28 snake eat an apple ! -> new snake lenght is 5
