@@ -2,7 +2,6 @@
 from os import times
 from tkinter import *
 from random import randrange
-from winsound import *
 import pygame
 import time
 from datetime import datetime
@@ -13,6 +12,7 @@ class Snake(Frame):
 
         #model
         Frame.__init__(self, snakeWindow)
+        self._level = level
         self._me = snakeWindow
         self._me.title(myTitle)
         self._me.geometry(myGeometry)
@@ -126,7 +126,7 @@ class Snake(Frame):
         self.play_ambiance_music()
         try:
             f = open("data/scores.txt", "a")
-            f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " new game party has begun \n")
+            f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " new game party has begun on level : " + str(self._level) + "\n")
             f.close()
         except:
             print("error when the file scores.txt is write")
@@ -172,6 +172,7 @@ class Snake(Frame):
         except:
             print("error when pygame mixer music is used")
         time.sleep(0.8)
+        self._snake = [[self._x,self._y],[self._x+2.5,self._y+2.5],[self._x+5,self._y+5],[0,0]]
         self._snake[0][0] = self._x
         self._snake[0][1] = self._y
         self._pX = randrange(20, self._widthCanvas-20)#new random cible

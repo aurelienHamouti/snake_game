@@ -16,7 +16,7 @@ class Welcome(Frame):
         self._me.config(background=backgroundColor)
 
         self._welcome = Label(text = "Welcome on the DCS snake game ssssss !")
-        self._levelChoice = Label(text = "Choice your level :")
+        self._levelChoice = Label(text = "Choose your level :")
         self._slugLevel = Button(text = "Slug")
         self._CoralLevel = Button(text = "Coral")
         self._pythonLevel = Button(text = "Python")
