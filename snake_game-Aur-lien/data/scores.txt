@@ -1,2 +1,0 @@
-19/05/2021 : 20:20:02 new game party has begun on level : slug
-19/05/2021 : 20:20:10 snake eat an apple ! -> new snake lenght is 5
