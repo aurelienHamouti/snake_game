@@ -5,6 +5,7 @@ from random import randrange
 import pygame
 import time
 from datetime import datetime
+import os
 
 class Snake(Frame):
 
@@ -31,6 +32,7 @@ class Snake(Frame):
         self._heightCanvas = 500
         self._canvas = Canvas(self._me , width= self._widthCanvas, height=self._heightCanvas, bg=canvasColor)
         self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
+        self._scoreFilePath = os.path.join('data', 'scores.txt')
         pygame.mixer.pre_init(44100, -16, 2, 1024)
         pygame.mixer.init()
 
@@ -128,7 +130,7 @@ class Snake(Frame):
     def newGame(self):
         self.play_ambiance_music()
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " new game party has begun on level : " + str(self._level) + "\n")
             f.close()
         except:
@@ -139,7 +141,7 @@ class Snake(Frame):
 
     def play_win_music(self):
         try:
-            winSound = pygame.mixer.music.load(r"ressources\sounds\eat.wav")
+            winSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'eat.wav'))
             winSound = pygame.mixer.music.play(0)
             pygame.mixer.music.play(0)
         except:
@@ -149,7 +151,7 @@ class Snake(Frame):
 
     def play_ambiance_music(self):
         try:
-            ambianceSound = pygame.mixer.music.load(r"ressources\sounds\ambiance.wav")
+            ambianceSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'ambiance.wav'))
             ambianceSound = pygame.mixer.music.play(-1)
         except:
             print("error when pygame mixer music is used")
@@ -162,7 +164,7 @@ class Snake(Frame):
         self.play_win_music()#noise catch
         #write score
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake eat an apple ! -> new snake lenght is " + str(len(self._snake)) + "\n")
             f.close()
         except:
@@ -170,7 +172,7 @@ class Snake(Frame):
 
     def lose(self):
         try:
-            loseSound = pygame.mixer.music.load(r"ressources\sounds\lose.wav")
+            loseSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'lose.wav'))
             loseSound = pygame.mixer.music.play(0)
         except:
             print("error when pygame mixer music is used")
@@ -184,7 +186,7 @@ class Snake(Frame):
         self.move()
         self.play_ambiance_music()
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake is died, game over \n")
             f.close()
         except:
@@ -196,7 +198,7 @@ class Snake(Frame):
 
 def startGame(level):
     root = Tk()
-    root.iconbitmap(r'ressources\images\blackSnakeIcon.ico')
+    root.iconbitmap(os.path.join('ressources', 'images', 'blackSnakeIcon.ico'))
     root.attributes('-topmost',True)
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()
