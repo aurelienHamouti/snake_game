@@ -2,6 +2,7 @@
 from tkinter import *
 import tkinter.font as TkFont
 from src import snake as snake
+import os
 
 class Welcome(Frame):
 
