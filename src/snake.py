@@ -60,10 +60,13 @@ class Snake(Frame):
 
         #events manage
         self._me.bind('<d>', self.turnRight)
-        #self._me.bind('<ARROW_UP>', self.turnRight)
+        self._me.bind('<Right>', self.turnRight)
         self._me.bind('<a>', self.turnLeft)
+        self._me.bind('<Left>', self.turnLeft)
         self._me.bind('<w>' , self.turnTop)
+        self._me.bind('<Up>' , self.turnTop)
         self._me.bind('<s>', self.turnBottom)
+        self._me.bind('<Down>', self.turnBottom)
 
     def move(self):
         self._canvas.delete('all')
@@ -194,5 +197,6 @@ class Snake(Frame):
 def startGame(level):
     root = Tk()
     root.iconbitmap(r'ressources\images\blackSnakeIcon.ico')
+    root.attributes('-topmost',True)
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()
