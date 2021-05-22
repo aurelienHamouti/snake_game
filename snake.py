@@ -5,6 +5,7 @@ from random import randrange
 import pygame
 import time
 from datetime import datetime
+import os
 
 class Snake(Frame):
 
@@ -26,11 +27,13 @@ class Snake(Frame):
         self._flag = 0
         self._cible = 0
         self._direction = 'top'
+        self._move = False
         self._snake = 0
         self._widthCanvas = 600
         self._heightCanvas = 500
         self._canvas = Canvas(self._me , width= self._widthCanvas, height=self._heightCanvas, bg=canvasColor)
         self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
+        self._scoreFilePath = os.path.join('data', 'scores.txt')
         pygame.mixer.pre_init(44100, -16, 2, 1024)
         pygame.mixer.init()
 
@@ -60,62 +63,74 @@ class Snake(Frame):
 
         #events manage
         self._me.bind('<d>', self.turnRight)
-        #self._me.bind('<ARROW_UP>', self.turnRight)
+        self._me.bind('<Right>', self.turnRight)
         self._me.bind('<a>', self.turnLeft)
+        self._me.bind('<Left>', self.turnLeft)
         self._me.bind('<w>' , self.turnTop)
+        self._me.bind('<Up>' , self.turnTop)
         self._me.bind('<s>', self.turnBottom)
+        self._me.bind('<Down>', self.turnBottom)
 
     def move(self):
         self._canvas.delete('all')
-        j=0
-        i=len(self._snake)-1
-        while i > 0:
-            self._snake[i][0]=self._snake[i-1][0]
-            self._snake[i][1]=self._snake[i-1][1]
-            self._canvas.create_oval(self._snake[i][0], self._snake[i][1], self._snake[i][0] +10, self._snake[i][1]+10,outline='green', fill='black')
-            i=i-1
-        self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='green', fill='black')
+        if self._move:
+            
+            j=0
+            i=len(self._snake)-1
+            while i > 0:
+                self._snake[i][0]=self._snake[i-1][0]
+                self._snake[i][1]=self._snake[i-1][1]
+                self._canvas.create_oval(self._snake[i][0], self._snake[i][1], self._snake[i][0] +10, self._snake[i][1]+10,outline='#016A1C', fill='#94C082')
+                i=i-1
+            self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='#510202', fill='red')
 
-        if self._direction  == 'right':
-            self._snake[0][0]  = self._snake[0][0] + self._dx
-            if self._snake[0][0] > self._widthCanvas:
-                #self._snake[0][0] = 0
-                self.lose()
-                return 0
-        elif self._direction  == 'left':
-            self._snake[0][0]  = self._snake[0][0] - self._dx
-            if self._snake[0][0] < 0:
-                #self._snake[0][0] = self._widthCanvas
-                self.lose()
-                return 0
-        elif self._direction  == 'top':
-            self._snake[0][1]  = self._snake[0][1] - self._dy
-            if self._snake[0][1] < 0:
-                #self._snake[0][1] = self._heightCanvas
-                self.lose()
-                return 0
-        elif self._direction  == 'down':
-            self._snake[0][1]  = self._snake[0][1] + self._dy
-            if self._snake[0][1] > self._heightCanvas:
-                #self._snake[0][1] = 0
-                self.lose()
-                return 0
-        self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10,outline='green', fill='blue')
-        self.test()
+            if self._direction  == 'right':
+                self._snake[0][0]  = self._snake[0][0] + self._dx
+                if self._snake[0][0] > self._widthCanvas:
+                    #self._snake[0][0] = 0
+                    self.lose()
+                    return 0
+            elif self._direction  == 'left':
+                self._snake[0][0]  = self._snake[0][0] - self._dx
+                if self._snake[0][0] < 0:
+                    #self._snake[0][0] = self._widthCanvas
+                    self.lose()
+                    return 0
+            elif self._direction  == 'top':
+                self._snake[0][1]  = self._snake[0][1] - self._dy
+                if self._snake[0][1] < 0:
+                    #self._snake[0][1] = self._heightCanvas
+                    self.lose()
+                    return 0
+            elif self._direction  == 'down':
+                self._snake[0][1]  = self._snake[0][1] + self._dy
+                if self._snake[0][1] > self._heightCanvas:
+                    #self._snake[0][1] = 0
+                    self.lose()
+                    return 0
+            self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10,outline='#422906', fill='#016A1C')
+            self.test()
+        else:
+            #Appuyer sur une touche directionelle pour commencer à jouer !
+            self._canvas.create_text(300, 200, text='Appuyer sur une touche directionnelle pour commencer à jouer !', fill='white', justify='center', font='Helvetica 12 bold')
         if self._flag != 0:
             self._me.after(self._speed, self.move)
 
     def turnRight(self, e):
         self._direction = 'right'
+        self._move = True
 
     def turnLeft(self, e):
         self._direction = 'left'
+        self._move = True
 
     def turnTop(self, e):
         self._direction = 'top'
+        self._move = True
 
     def turnBottom(self, e):
         self._direction = 'down'
+        self._move = True
 
     def test(self):
         if self._snake[1][0]>self._pX-7 and  self._snake[1][0]<self._pX+7:        
@@ -125,7 +140,7 @@ class Snake(Frame):
     def newGame(self):
         self.play_ambiance_music()
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " new game party has begun on level : " + str(self._level) + "\n")
             f.close()
         except:
@@ -136,7 +151,7 @@ class Snake(Frame):
 
     def play_win_music(self):
         try:
-            winSound = pygame.mixer.music.load(r"ressources\sounds\eat.wav")
+            winSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'eat.wav'))
             winSound = pygame.mixer.music.play(0)
             pygame.mixer.music.play(0)
         except:
@@ -146,7 +161,7 @@ class Snake(Frame):
 
     def play_ambiance_music(self):
         try:
-            ambianceSound = pygame.mixer.music.load(r"ressources\sounds\ambiance.wav")
+            ambianceSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'ambiance.wav'))
             ambianceSound = pygame.mixer.music.play(-1)
         except:
             print("error when pygame mixer music is used")
@@ -159,7 +174,7 @@ class Snake(Frame):
         self.play_win_music()#noise catch
         #write score
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake eat an apple ! -> new snake lenght is " + str(len(self._snake)) + "\n")
             f.close()
         except:
@@ -167,7 +182,7 @@ class Snake(Frame):
 
     def lose(self):
         try:
-            loseSound = pygame.mixer.music.load(r"ressources\sounds\lose.wav")
+            loseSound = pygame.mixer.music.load(os.path.join('ressources', 'sounds', 'lose.wav'))
             loseSound = pygame.mixer.music.play(0)
         except:
             print("error when pygame mixer music is used")
@@ -178,10 +193,11 @@ class Snake(Frame):
         self._pX = randrange(20, self._widthCanvas-20)#new random cible
         self._pY = randrange(20, self._heightCanvas-20)
         self._canvas.coords(self._cible,self._pX, self._pY, self._pX+5, self._pY+5)
+        self._move = False
         self.move()
         self.play_ambiance_music()
         try:
-            f = open("data/scores.txt", "a")
+            f = open(self._scoreFilePath, "a")
             f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake is died, game over \n")
             f.close()
         except:
@@ -193,6 +209,8 @@ class Snake(Frame):
 
 def startGame(level):
     root = Tk()
-    root.iconbitmap(r'ressources\images\blackSnakeIcon.ico')
-    program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
+    root.iconbitmap(os.path.join('ressources', 'images', 'blackSnakeIcon.ico'))
+    root.resizable(width=False, height=False)
+    root.attributes('-topmost',True)
+    program = Snake(root, "Snake DCS", "700x550+300+20", "#659C2D", level, "black")
     program.mainloop()
