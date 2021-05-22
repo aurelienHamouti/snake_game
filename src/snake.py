@@ -210,6 +210,7 @@ class Snake(Frame):
 def startGame(level):
     root = Tk()
     root.iconbitmap(os.path.join('ressources', 'images', 'blackSnakeIcon.ico'))
+    root.resizable(width=False, height=False)
     root.attributes('-topmost',True)
     program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
     program.mainloop()
