@@ -168,6 +168,7 @@ class Welcome(Frame):
         gameHistory=Tk()
         gameHistory.title("Your last scores")
         gameHistory.geometry("500x400+500+200")
+        gameHistory.iconbitmap(os.path.join('ressources', 'images', 'historyGraph.ico'))
         titleLabel=Label(gameHistory, text="Game history", font=("Courier New", 20, "bold", "underline"))
         titleLabel.place(x=130, y=15)
         textHighestScoreLabel=Label(gameHistory, text=txtHighestScores, wraplength=470, justify="left", font=("Courier New", 12))
