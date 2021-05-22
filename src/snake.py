@@ -72,7 +72,6 @@ class Snake(Frame):
         self._me.bind('<Down>', self.turnBottom)
 
     def move(self):
-        print(self._move)
         self._canvas.delete('all')
         if self._move:
             
