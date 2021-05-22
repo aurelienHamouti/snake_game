@@ -21,6 +21,7 @@ class Welcome(Frame):
         self._CoralLevel = Button(text = "Coral")
         self._pythonLevel = Button(text = "Python")
         self._exit = Button(text = "Exit")
+        self.history = Button(text="Game history")
         self._menubar = Menu(self)
         
         #view
@@ -63,6 +64,11 @@ class Welcome(Frame):
         self._exit['activebackground'] = "#ff0000"
         self._exit.place(relx=0.95, rely=0.95, anchor=CENTER)
 
+        #history button
+        self.history['font'] = "Helvetica 20 bold"
+        self.history['activebackground'] = "#ff0000"
+        self.history.place(relx=0.5, rely=0.87, anchor=CENTER)
+
         #menu
         menu = Menu(self._menubar, tearoff=0)
         self._menubar.add_cascade(label="Menu", menu=menu)
@@ -73,7 +79,7 @@ class Welcome(Frame):
         helpmenu.add_command(label="user manual", command=self.showHelp)
         helpmenu.add_command(label="license", command=self.showLicence)
         menu.add_separator()
-        menu.add_command(label="Quitter", command=self.exit)
+        menu.add_command(label="exit", command=self.exit)
         
 
         def mouseOver(e):
@@ -84,6 +90,7 @@ class Welcome(Frame):
 
         #events manage
         self._exit['command'] = self.exit
+        
         self._slugLevel['command'] = self.slug
         self._slugLevel.bind("<Enter>", mouseOver)
         self._slugLevel.bind("<Leave>", mouseLeave)
@@ -95,6 +102,10 @@ class Welcome(Frame):
         self._pythonLevel['command'] = self.python
         self._pythonLevel.bind("<Enter>", mouseOver)
         self._pythonLevel.bind("<Leave>", mouseLeave)
+
+        self.history['command']=self.showHistory
+        self.history.bind("<Enter>", mouseOver)
+        self.history.bind("<Leave>", mouseLeave)
 
         self._me.config(menu = self._menubar)
 
