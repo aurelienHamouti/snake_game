@@ -78,9 +78,10 @@ class Snake(Frame):
             while i > 0:
                 self._snake[i][0]=self._snake[i-1][0]
                 self._snake[i][1]=self._snake[i-1][1]
-                self._canvas.create_oval(self._snake[i][0], self._snake[i][1], self._snake[i][0] +10, self._snake[i][1]+10,outline='green', fill='black')
+                self._canvas.create_oval(self._snake[i][0], self._snake[i][1], self._snake[i][0] +10, self._snake[i][1]+10,outline='#016A1C', fill='#94C082')
                 i=i-1
-            self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='green', fill='black')
+            self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='#510202', fill='red')
+
 
             if self._direction  == 'right':
                 self._snake[0][0]  = self._snake[0][0] + self._dx
@@ -106,7 +107,7 @@ class Snake(Frame):
                     #self._snake[0][1] = 0
                     self.lose()
                     return 0
-            self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10,outline='green', fill='blue')
+            self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10, outline='#422906', fill='#016A1C')
             self.test()
         else:
             #Appuyer sur une touche directionelle pour commencer à jouer !
@@ -217,5 +218,5 @@ def startGame(level):
     root.iconbitmap(os.path.join('ressources', 'images', 'blackSnakeIcon.ico'))
     root.resizable(width=False, height=False)
     root.attributes('-topmost',True)
-    program = Snake(root, "Snake DCS", "700x550+300+20", "#00cc00", level, "#00001a")
+    program = Snake(root, "Snake DCS", "700x550+300+20", "#659C2D", level, "black")
     program.mainloop()

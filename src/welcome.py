@@ -75,12 +75,12 @@ class Welcome(Frame):
         self._exit['font'] = "Helvetica 20 bold"
         self._exit['activebackground'] = "#ff0000"
         #self._exit.pack()
-        self._exit.place(relx=0.95, rely=0.95, anchor=CENTER)
+        self._exit.place(relx=0.92, rely=0.90, anchor=CENTER)
 
         #history button
         self._history['font'] = "Helvetica 20 bold"
         self._history['activebackground'] = "#ff0000"
-        self._history.place(relx=0.5, rely=0.87, anchor=CENTER)
+        self._history.place(relx=0.5, rely=0.80, anchor=CENTER)
 
         #menu
         menu = Menu(self._menubar, tearoff=0)
@@ -222,5 +222,5 @@ def start():
     bglabel=Label(root, image=bg)
     bglabel.place(x=0, y=0, relwidth=1, relheight=1)
 
-    program = Welcome(root, "Snake DCS", "900x594+250+50")
+    program = Welcome(root, "Snake DCS", "900x637+250+50")
     program.mainloop()

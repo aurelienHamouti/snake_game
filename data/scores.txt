@@ -24,3 +24,16 @@
 23/05/2021 at 18:28:33 snake eat an apple ! -> new snake lenght is 6
 23/05/2021 at 18:28:34 snake is died, game over 
 23/05/2021 at 18:28:36 snake is died, game over 
+23/05/2021 at 18:35:07 new game party has begun on level : coral
+23/05/2021 at 18:35:13 snake eat an apple ! -> new snake lenght is 1
+23/05/2021 at 18:35:19 snake eat an apple ! -> new snake lenght is 2
+23/05/2021 at 18:35:24 snake eat an apple ! -> new snake lenght is 3
+23/05/2021 at 18:35:26 snake is died, game over 
+23/05/2021 at 18:37:27 new game party has begun on level : coral
+23/05/2021 at 18:37:33 snake eat an apple ! -> new snake lenght is 1
+23/05/2021 at 18:37:37 snake eat an apple ! -> new snake lenght is 2
+23/05/2021 at 18:37:42 snake eat an apple ! -> new snake lenght is 3
+23/05/2021 at 18:37:47 snake eat an apple ! -> new snake lenght is 4
+23/05/2021 at 18:37:48 snake is died, game over 
+23/05/2021 at 18:40:36 new game party has begun on level : coral
+23/05/2021 at 18:40:41 snake is died, game over 
