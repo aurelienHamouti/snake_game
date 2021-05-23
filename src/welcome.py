@@ -133,52 +133,56 @@ class Welcome(Frame):
         txtHighestScores = ""
         txtScores = ""
         # creation d'une liste avec tous les scores
-        listescore = []
-        listetime = []
+        listescore1 = []
+        listescore2 = []
+        listetime1 = []
+        listetime2 = []
         with open(os.path.join("data", "scores.txt"), "r") as fichier:
             for ligne in fichier:
                 score = ligne[66:-1] # emplacement du score
-                time = ligne[:21] # emplacement de la date et de l'heure
-                listescore.append(score)
-                listetime.append(time)
-            # garder que les scores, supprime les lignes vides
-            while '' in listescore:
-                l = listescore.index('')
-                listescore.pop(l)
-                listetime.pop(l)
-            for i in range(len(listescore)):
-                listescore[i] = int(listescore[i])
-            # highest score
+                time = ligne[:19] # emplacement de la date et de l'heure
+                listescore1.append(score)
+                listetime1.append(time)
+                # garder que les scores, supprime les lignes vides
+            for m in range(len(listescore1)-1):
+                if listescore1[m+1] == '' and listescore1[m] != '':
+                    listescore2.append(listescore1[m])
+                    listetime2.append(listetime1[m])
+                elif m == (len(listescore1)-1):
+                    listescore2.append(listescore1[m+1])
+                    listetime2.append(listetime1[m+1])  
+                else:
+                    pass
+            for i in range(len(listescore2)):
+                listescore2[i] = int(listescore2[i])
             # si le joueur consulte le score sans avoir joué
-            if len(listescore) == 0:
-                print ("You haven't played to SNAKE yet, try to set a new record!")
+            if len(listescore2) == 0:
+                pass
+                txtScores += "You haven't played to SNAKE yet, try to set a new record!"
             # après avoir joué
-            elif len(listescore) < 5:
-                print ("Here are your last scores (newest to oldest): ")
-                for s in range(len(listescore), 0, -1):
-                    txtScores += 'Date : (' + listetime[s-1] + '),' + ' Score : ' + str(listescore[s-1]) + '\n'
-                txtHighestScores += "Your highest score ever is : " + str(max(listescore))
-                    
+            elif len(listescore2) < 5:
+                for s in range(len(listescore2), 0, -1):
+                    txtScores += 'Game date the ' + listetime2[s-1] + ' with score ' + str(listescore2[s-1]) + "\n"
+                txtHighestScores += "Your highest score ever is : " + str(max(listescore2)) + "\n"  
             else : 
-                print ("Here are your 5 last scores (newest to oldest) :")
-                for s in range(len(listescore), (len(listescore)-5), -1):
-                    txtScores += 'Game date : (' + listetime[s-1] + '),' + ' Score : ' + str(listescore[s-1]) + '\n'
-                txtHighestScores += ("Your highest score ever is : " + str(max(listescore)))
+                for s in range(len(listescore2), (len(listescore2)-5), -1):
+                    txtScores += 'Game date the ' + listetime2[s-1] + ' with score ' + str(listescore2[s-1]) + "\n"
+                txtHighestScores += "Your highest score ever is : " + str(max(listescore2)) + "\n"
 
         gameHistory=Tk()
         gameHistory.title("Your last scores")
-        gameHistory.geometry("500x400+500+200")
+        gameHistory.geometry("550x400+500+200")
         gameHistory.iconbitmap(os.path.join('ressources', 'images', 'historyGraph.ico'))
         titleLabel=Label(gameHistory, text="Game history", font=("Courier New", 20, "bold", "underline"))
-        titleLabel.place(x=130, y=15)
+        titleLabel.place(x=150, y=15)
         textHighestScoreLabel=Label(gameHistory, text=txtHighestScores, wraplength=470, justify="left", font=("Courier New", 12))
         textHighestScoreLabel.place(x=15, y=75)
 
-        titletScoreLabel=Label(gameHistory, text="Your last 5 scores :", wraplength=470, justify="left", font=("Courier New", 12, "bold", "underline"))
-        titletScoreLabel.place(x=15, y=105)
+        titletScoreLabel=Label(gameHistory, text="Here are your 5 last scores (newest to oldest) :", wraplength=500, justify="left", font=("Courier New", 11, "bold", "underline"))
+        titletScoreLabel.place(x=15, y=110)
 
-        textScoresLabel=Label(gameHistory, text=txtScores, wraplength=470, justify="left", font=("Courier New", 12))
-        textScoresLabel.place(x=15, y=140)
+        textScoresLabel=Label(gameHistory, text=txtScores, wraplength=500, justify="left", font=("Courier New", 12))
+        textScoresLabel.place(x=15, y=150)
         gameHistory.resizable(width=False, height=False)
         gameHistory.mainloop()
 

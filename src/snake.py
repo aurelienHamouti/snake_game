@@ -53,7 +53,6 @@ class Snake(Frame):
         self.newGame()
 
     def view_interface(self):
-        
         self._snake = [[self._x,self._y],[self._x+2.5,self._y+2.5],[self._x+5,self._y+5],[0,0]]
         self._cible = self._canvas.create_rectangle(self._pX, self._pY, self._pX+5, self._pY+5, outline='green', fill='black')
         self._canvas.pack(side=TOP, padx=5, pady=5)
@@ -74,7 +73,6 @@ class Snake(Frame):
     def move(self):
         self._canvas.delete('all')
         if self._move:
-            
             j=0
             i=len(self._snake)-1
             while i > 0:
@@ -141,7 +139,7 @@ class Snake(Frame):
         self.play_ambiance_music()
         try:
             f = open(self._scoreFilePath, "a")
-            f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " new game party has begun on level : " + str(self._level) + "\n")
+            f.write(datetime.now().strftime("%d/%m/%Y at %H:%M:%S") + " new game party has begun on level : " + str(self._level) + "\n")
             f.close()
         except:
             print("error when the file scores.txt is write")
@@ -175,7 +173,7 @@ class Snake(Frame):
         #write score
         try:
             f = open(self._scoreFilePath, "a")
-            f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake eat an apple ! -> new snake lenght is " + str(len(self._snake)) + "\n")
+            f.write(datetime.now().strftime("%d/%m/%Y at %H:%M:%S") + " snake eat an apple ! -> new snake lenght is " + str(len(self._snake)-4) + "\n")
             f.close()
         except:
             print("error when the file scores.txt is write")
@@ -198,13 +196,20 @@ class Snake(Frame):
         self.play_ambiance_music()
         try:
             f = open(self._scoreFilePath, "a")
-            f.write(datetime.now().strftime("%d/%m/%Y : %H:%M:%S") + " snake is died, game over \n")
+            f.write(datetime.now().strftime("%d/%m/%Y at %H:%M:%S") + " snake is died, game over \n")
             f.close()
         except:
             print("error when the file scores.txt is write")
 
     def exit(self):
+        #if messagebox.askokcancel("Quit", "Do you want to quit?"):
         pygame.mixer.music.stop()
+        try: #write score
+            f = open(self._scoreFilePath, "a")
+            f.write(datetime.now().strftime("%d/%m/%Y at %H:%M:%S") + " snake is died, game over \n")
+            f.close()
+        except:
+            print("error when the file scores.txt is write")
         self._me.destroy()
 
 def startGame(level):
