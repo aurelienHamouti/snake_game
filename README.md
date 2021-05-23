@@ -1,6 +1,6 @@
 # Snake game
 
-Easy snake game as part of a python programming course at the university of Lausanne.
+Easy snake game as part of a python programming course at the University of Lausanne.
 
 ## Installation for MAC users
 
