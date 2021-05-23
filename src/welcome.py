@@ -217,7 +217,7 @@ def start():
     root.iconbitmap(os.path.join('ressources', 'images', 'blackSnakeIcon.ico'))
     root.resizable(width=False, height=False)
 
-    bgpath=os.path.join("ressources", "images", "pageA.png")
+    bgpath=os.path.join("ressources", "images", "PageA.png")
     bg=PhotoImage(file=bgpath)
     bglabel=Label(root, image=bg)
     bglabel.place(x=0, y=0, relwidth=1, relheight=1)
