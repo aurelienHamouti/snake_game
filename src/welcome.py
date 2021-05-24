@@ -163,6 +163,9 @@ class Welcome(Frame):
         textScoresLabel=Label(gameHistory, text=txtScores, wraplength=500, justify="left", font=("Courier New", 12))
         textScoresLabel.place(x=15, y=150)
         gameHistory.resizable(width=False, height=False)
+        
+        boutonhistorique=Button(gameHistory, text="Quit the game", command=lambda:[(self.exit(),gameHistory.destroy())])
+        boutonhistorique.place(relx=0.5, rely=0.9, anchor=CENTER)
         gameHistory.mainloop()
 
     def showHelp(self):
@@ -196,6 +199,9 @@ class Welcome(Frame):
         textLabel=Label(license, text="Copyright (C) <2021> <Aurélien, Marc, Manuel> \n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or(at your option) any later version.\n \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n \n You should have received a copy of the GNU General Public License along with this program.If not, see <http://www.gnu.org/licenses/>.", wraplength=400, justify="left", font=("Courier New", 12))
         textLabel.place(x=15, y=75)
         license.resizable(width=False, height=False)
+        
+        boutonlicense=Button(license, text="Quit the game", command=lambda:[(self.exit(),license.destroy())])
+        boutonlicense.place(relx=0.5, rely=0.9, anchor=CENTER)
         license.mainloop()
 
     def exit(self):
