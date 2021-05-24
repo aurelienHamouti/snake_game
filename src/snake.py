@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from os import times
 from tkinter import *
+import tkinter.font as TkFont
 from random import randrange
 import pygame
 import time
@@ -32,7 +33,7 @@ class Snake(Frame):
         self._widthCanvas = 600
         self._heightCanvas = 500
         self._canvas = Canvas(self._me , width= self._widthCanvas, height=self._heightCanvas, bg=canvasColor)
-        self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green')
+        self._exitButton = Button(self._me, text='Exit', command=self.exit, bg='black' , fg='green', width=10, font=TkFont.Font(family='Helvetica', size=11))
         self._scoreFilePath = os.path.join('data', 'scores.txt')
         pygame.mixer.pre_init(44100, -16, 2, 1024)
         pygame.mixer.init()

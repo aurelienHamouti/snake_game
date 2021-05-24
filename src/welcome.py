@@ -14,11 +14,7 @@ class Welcome(Frame):
         self._me = welcomeWindow
         self._me.title(myTitle)
         self._me.geometry(myGeometry)
-        #self._drawing = Canvas(width=800,height=500)
         self._me.config(background=backgroundColor)
-
-        #self._welcome = Label(text = "Welcome on the DCS snake game ssssss !")
-        #self._levelChoice = Label(text = "Choose your level :")
         self._slugLevel = Button(text = "Slug", width=8)
         self._CoralLevel = Button(text = "Coral", width=8)
         self._pythonLevel = Button(text = "Python", width=8)
@@ -34,27 +30,9 @@ class Welcome(Frame):
         #widgets
         #------#
 
-        #self.grid(column=0, row=0, sticky=(N, W, E, S)) #appel au gestionnaire de géometrie
-        #self._me.grid_rowconfigure(0, weight=1)
-        #self._me.grid_columnconfigure(0, weight=1)
-
         titleFont = TkFont.Font(family="Lucida Calligraphy", size=20, weight="bold")
         levelLabelFont = TkFont.Font(family="Great Vibes", size=15, weight="bold")
         levelFont = TkFont.Font(family="Showcard Gothic", size=20, weight="bold")
-
-        """#welcome message label
-        self._welcome['font'] = titleFont
-        self._welcome['bg'] = "#00cc00"
-        self._levelChoice['fg'] = "white"
-        #self._welcome.grid(row=0, column=0, columnspan=1)
-        self._welcome.pack()
-
-        #level message label
-        self._levelChoice['font'] = levelLabelFont
-        self._levelChoice['bg'] = "#00cc00"
-        self._levelChoice['fg'] = "white"
-        self._levelChoice.pack()
-        self._levelChoice.place(relx=0.5, rely=0.20, anchor=CENTER)"""
 
         #slug level button
         self._slugLevel['font'] = levelFont
