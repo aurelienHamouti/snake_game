@@ -4,7 +4,7 @@ Snake game as part of a python programming course at the University of Lausanne.
 
 ## Installation for MAC users
 
-**1. Install [Python 3.7](https://www.python.org/downloads/release/python-370/) (or a newest version)<br/>**
+**1. Install [Python 3.7](https://www.python.org/downloads/release/python-370/) (or a newer version)<br/>**
 Go to the official python website, download and install `python 3.7`.<br/>
 
 **2. Download and Install [pygame](https://www.pygame.org/wiki/GettingStarted) using the Terminal<br/>**
@@ -32,7 +32,7 @@ ENJOY!
 
 ## Installation for WINDOWS users
 
-**1. Install [Python 3.7](https://www.python.org/downloads/release/python-370/) (or a newest version)<br/>**
+**1. Install [Python 3.7](https://www.python.org/downloads/release/python-370/) (or a newer version)<br/>**
 Go to the official python website, download and install `python 3.7`.<br/>
 
 **2. Download and Install [pygame](https://www.pygame.org/wiki/GettingStarted) using the Command Prompt<br/>**
