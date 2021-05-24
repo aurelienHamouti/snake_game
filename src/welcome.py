@@ -177,7 +177,9 @@ class Welcome(Frame):
         canvas = Canvas(usermanual, width = 636, height = 900)      
         canvas.pack(fill=BOTH, expand=TRUE)      
         canvas.create_image(0,0, image=img, anchor="nw")      
-        
+        boutonusermanual=Button(usermanual, text="Quit the game", command=lambda:[(self.exit(),usermanual.destroy())])
+        boutonusermanual.place(relx=0.5, rely=0.99, anchor=CENTER)
+
         # permet de modifier la taille de la fenêtre
         def resize_img(event):
             global bgg, resized, bg2
@@ -195,7 +197,7 @@ class Welcome(Frame):
         license.title("License")
         license.geometry("445x550+500+200")
         titleLabel=Label(license, text="Snake DCS", font=("Courier New", 20, "bold", "underline"))
-        titleLabel.place(x=100, y=15)
+        titleLabel.place(x=165, y=15)
         textLabel=Label(license, text="Copyright (C) <2021> <Aurélien, Marc, Manuel> \n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or(at your option) any later version.\n \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n \n You should have received a copy of the GNU General Public License along with this program.If not, see <http://www.gnu.org/licenses/>.", wraplength=400, justify="left", font=("Courier New", 12))
         textLabel.place(x=15, y=75)
         license.resizable(width=False, height=False)
