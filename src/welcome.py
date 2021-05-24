@@ -60,7 +60,7 @@ class Welcome(Frame):
         self._slugLevel['font'] = levelFont
         self._slugLevel['activebackground'] = "#ffff00"
         #self._slugLevel.grid(row=2, sticky=N, padx=20, pady=20)
-        self._slugLevel.place(relx=0.35, rely=0.52, anchor=CENTER)
+        self._slugLevel.place(relx=0.3, rely=0.52, anchor=CENTER)
         
         #coral level button
         self._CoralLevel['font'] = levelFont
@@ -70,7 +70,7 @@ class Welcome(Frame):
         #python level button
         self._pythonLevel['font'] = levelFont
         self._pythonLevel['activebackground'] = "#ffff00"
-        self._pythonLevel.place(relx=0.65, rely=0.52, anchor=CENTER)
+        self._pythonLevel.place(relx=0.7, rely=0.52, anchor=CENTER)
 
         #exit button
         self._exit['font'] = "Helvetica 20 bold"
