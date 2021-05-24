@@ -3,6 +3,7 @@ from tkinter import *
 import tkinter.font as TkFont
 from src import snake as snake
 import os
+from PIL import ImageTk, Image
 
 class Welcome(Frame):
 
@@ -18,9 +19,9 @@ class Welcome(Frame):
 
         #self._welcome = Label(text = "Welcome on the DCS snake game ssssss !")
         #self._levelChoice = Label(text = "Choose your level :")
-        self._slugLevel = Button(text = "Slug")
-        self._CoralLevel = Button(text = "Coral")
-        self._pythonLevel = Button(text = "Python")
+        self._slugLevel = Button(text = "Slug", width=8)
+        self._CoralLevel = Button(text = "Coral", width=8)
+        self._pythonLevel = Button(text = "Python", width=8)
         self._exit = Button(text = "Exit")
         self._menubar = Menu(self)
         self._history = Button(text="Game history")
@@ -69,7 +70,7 @@ class Welcome(Frame):
         #python level button
         self._pythonLevel['font'] = levelFont
         self._pythonLevel['activebackground'] = "#ffff00"
-        self._pythonLevel.place(relx=0.675, rely=0.52, anchor=CENTER)
+        self._pythonLevel.place(relx=0.65, rely=0.52, anchor=CENTER)
 
         #exit button
         self._exit['font'] = "Helvetica 20 bold"
@@ -190,12 +191,22 @@ class Welcome(Frame):
         usermanual=Toplevel()
         usermanual.title("User Manual")
         usermanual.geometry("636x900+400+200")
-        canvas = Canvas(usermanual, width = 636, height = 900)      
-        canvas.pack()      
         mypath=os.path.join("ressources", "images", "manuel.png")
-        img=PhotoImage(file=mypath)      
-        canvas.create_image(0,0, anchor=NW, image=img)      
-        usermanual.resizable(width=False, height=False)
+        img=ImageTk.PhotoImage(file=mypath)
+        canvas = Canvas(usermanual, width = 636, height = 900)      
+        canvas.pack(fill=BOTH, expand=TRUE)      
+        canvas.create_image(0,0, image=img, anchor="nw")      
+        
+        # permet de modifier la taille de la fenêtre
+        def resize_img(event):
+            global bgg, resized, bg2
+            bgg = Image.open(os.path.join("ressources", "images", "manuel.png"))
+            resized = bgg.resize((event.width, event.height),Image.ANTIALIAS)
+            
+            bg2 =ImageTk.PhotoImage(resized)
+            canvas.create_image(0, 0, image=bg2, anchor="nw")
+        
+        usermanual.bind("<Configure>", resize_img)
         usermanual.mainloop()
 
     def showLicence(self):
