@@ -43,7 +43,7 @@ This should install `pygame 2.0.1` into the python 3.7 folder you've previously 
 
 **3. Download and Install [pillow](https://pillow.readthedocs.io/en/stable/installation.html) using the Terminal<br/>**
 Open a `Command Prompt` window.<br/> 
-Copy and paste the following line `python3 -m pip install --upgrade Pillow` and hit **ENTER**.<br/>
+Copy and paste the following line `py -3.7 -m pip install --upgrade Pillow` and hit **ENTER**.<br/>
 This should install `pillow 8.0` into the python 3.7 folder you've previously installed.<br/>
 
 **4. Download the code from [github](https://github.com/aurelienHamouti/snake_game)<br/>**
