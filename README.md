@@ -28,8 +28,6 @@ Select `open with >` **IDLE 3.7**.<br/>
 Once the IDLE window is open, go to the `Run menu` and select **Run Module** or press **F5**.<br/>
 The game should start.<br/>
 
-ENJOY!
-
 ## Installation for WINDOWS users
 
 **1. Install [Python 3.7](https://www.python.org/downloads/release/python-370/) (or a newer version)<br/>**
@@ -57,11 +55,26 @@ Once the IDLE window is open, go to the `File menu` and select `Open...`. Find t
 In the new window, go to the `Run menu` and select **Run Module** or press **F5**.<br/>
 The game should start.<br/>
 
+## User Manual
+
+Game description : you embody a snake and your goal is to eat as much food as you can. The more you eat, the more you will grow... but be carefull not to have eyes bigger than your belly.
+
+How to play :
+
+<img src="ressources/images/history.jpg" width="330" height="260">
+
+<img src="ressources/images/playing.jpg" width="330" height="260">
+
+<img src="ressources/images/start.jpg" width="330" height="260">
+
 ENJOY!
 
-![history](ressources/images/history.jpg?raw=true)
-<img src="ressources/images/history.jpg" width="320" height="250">
-![playing](ressources/images/playing.jpg?raw=true)
-<img src="ressources/images/playing.jpg" width="320" height="250">
-![start](ressources/images/start.jpg?raw=true)
-<img src="ressources/images/start.jpg" width="320" height="250">
+## License
+
+Copyright (C) <2021> <Aurélien, Marc, Manuel> 
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published 
+by the Free Software Foundation, either version 3 of the License, or(at your option) any later version. This program is distributed 
+in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program.
+If not, see http://www.gnu.org/licenses
