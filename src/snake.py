@@ -112,7 +112,7 @@ class Snake(Frame):
             self.test()
         else:
             #Appuyer sur une touche directionelle pour commencer à jouer !
-            self._canvas.create_text(300, 200, text='Appuyer sur une touche directionnelle pour commencer à jouer !', fill='white', justify='center', font='Helvetica 12 bold')
+            self._canvas.create_text(300, 200, text='Press an arrow key to start !', fill='white', justify='center', font='Helvetica 12 bold')
         if self._flag != 0:
             self._me.after(self._speed, self.move)
 
