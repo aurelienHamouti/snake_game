@@ -159,7 +159,7 @@ class Welcome(Frame):
         textHighestScoreLabel=Label(gameHistory, text=txtHighestScores, wraplength=470, justify="left", font=("Courier New", 12))
         textHighestScoreLabel.place(x=15, y=75)
 
-        titletScoreLabel=Label(gameHistory, text="Here are your 5 last scores (newest to oldest) :", wraplength=500, justify="left", font=("Courier New", 11, "bold", "underline"))
+        titletScoreLabel=Label(gameHistory, text="Here are your last scores (newest to oldest) :", wraplength=500, justify="left", font=("Courier New", 11, "bold", "underline"))
         titletScoreLabel.place(x=15, y=110)
 
         textScoresLabel=Label(gameHistory, text=txtScores, wraplength=500, justify="left", font=("Courier New", 12))
