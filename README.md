@@ -60,31 +60,30 @@ The game should start.<br/>
 **Game description:**<br/>
 You embody a snake and your goal is to eat as much food as you can. The more you eat, the more you will grow... but be carefull not to have eyes bigger than your belly.<br/>
 
-**How to play:**<br/>
+**How to play?**<br/>
 
-<p align="center">
    <img src="ressources/images/start.jpg" width="330" height="260">
-</p>
 
 1. Here you can choose the level of difficulty. If you select `SLUG` the snake will be way slower than in `PYTHON` mode.<br/>
 2. By clicking on `EXIT` you will quit the game... we don't recommend you to click on this button.<br/>
 
 **How to command the snake?**<br/>
 
-<p align="center">
    <img src="ressources/images/playing.jpg" width="330" height="260">
-</p>
 
 If you want the snake to go to the left click: `A` or `⭠`<br/>
 If you want the snake to go to the right click: `D` or `⭢`<br/>
 If you want the snake to go up click: `W` or `⭡`<br/>
 If you want the snake to go down click: `S` or `⭣`<br/>
 
-<p align="center">
-  <img src="ressources/images/history.jpg" width="330" height="260">
-</p>
+
+
+
 
 **When does the game end?**<br/>
+
+  <img src="ressources/images/history.jpg" width="330" height="260">
+  
 When you hit the walls, the game is over. You can click on the `GAME HISTORY` button to see if you were able to set a new record. If you decide to start a new game, your snake will be small again. 
 
 ENJOY!
