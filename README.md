@@ -58,3 +58,10 @@ In the new window, go to the `Run menu` and select **Run Module** or press **F5*
 The game should start.<br/>
 
 ENJOY!
+
+![history](ressources/images/history.jpg?raw=true)
+<img src="ressources/images/history.jpg" width="320" height="250">
+![playing](ressources/images/playing.jpg?raw=true)
+<img src="ressources/images/playing.jpg" width="320" height="250">
+![start](ressources/images/start.jpg?raw=true)
+<img src="ressources/images/start.jpg" width="320" height="250">
