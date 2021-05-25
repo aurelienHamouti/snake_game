@@ -82,7 +82,7 @@ If you want the snake to go down click: `S` or `⭣`<br/>
 
 <p align="center">
   <img src="ressources/images/history.jpg" width="330" height="260">
-</p><br/>
+</p>
 
 **When does the game end?**<br/>
 When you hit the walls, the game is over. You can click on the `GAME HISTORY` button to see if you were able to set a new record. If you decide to start a new game, your snake will be small again. 
