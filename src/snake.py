@@ -83,29 +83,24 @@ class Snake(Frame):
                 i=i-1
             self._canvas.create_rectangle(self._pX, self._pY, self._pX+7, self._pY+7, outline='#510202', fill='red')
 
-
             if self._direction  == 'right':
                 self._snake[0][0]  = self._snake[0][0] + self._dx
                 if self._snake[0][0] > self._widthCanvas:
-                    #self._snake[0][0] = 0
                     self.lose()
                     return 0
             elif self._direction  == 'left':
                 self._snake[0][0]  = self._snake[0][0] - self._dx
                 if self._snake[0][0] < 0:
-                    #self._snake[0][0] = self._widthCanvas
                     self.lose()
                     return 0
             elif self._direction  == 'top':
                 self._snake[0][1]  = self._snake[0][1] - self._dy
                 if self._snake[0][1] < 0:
-                    #self._snake[0][1] = self._heightCanvas
                     self.lose()
                     return 0
             elif self._direction  == 'down':
                 self._snake[0][1]  = self._snake[0][1] + self._dy
                 if self._snake[0][1] > self._heightCanvas:
-                    #self._snake[0][1] = 0
                     self.lose()
                     return 0
             self._canvas.create_oval(self._snake[0][0], self._snake[0][1], self._snake[0][0]+10, self._snake[0][1]+10, outline='#422906', fill='#016A1C')
@@ -204,7 +199,6 @@ class Snake(Frame):
             print("error when the file scores.txt is write")
 
     def exit(self):
-        #if messagebox.askokcancel("Quit", "Do you want to quit?"):
         pygame.mixer.music.stop()
         try: #write score
             f = open(self._scoreFilePath, "a")
