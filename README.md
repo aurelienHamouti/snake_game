@@ -64,36 +64,34 @@ You embody a snake and your goal is to eat as much food as you can. The more you
 
    <img src="ressources/images/start.jpg" width="330" height="260">
 
-1. Here you can choose the level of difficulty. If you select `SLUG` the snake will be way slower than in `PYTHON` mode.<br/>
-2. By clicking on `EXIT` you will quit the game... we don't recommend you to click on this button.<br/>
+1. Here you can choose the level of difficulty. If you select `SLUG` the snake will be way slower than in `PYTHON` mode. `CORAL` mode is a good in between.<br/>
+2. By clicking on the `GAME HISTORY` button, you have access to your highest score and your five last scores.<br/>
+
+  <img src="ressources/images/history.jpg" width="330" height="260">
+
+3. By clicking on `EXIT` you will quit the game... we don't recommend you to click on this button.<br/>
+4. Thanks to the `Info` menu, you have access to the `Game history`, the `User manual`, the `License` and an `Exit` button.
 
 **How to command the snake?**<br/>
 
    <img src="ressources/images/playing.jpg" width="330" height="260">
 
-If you want the snake to go to the left click: `A` or `⭠`<br/>
-If you want the snake to go to the right click: `D` or `⭢`<br/>
-If you want the snake to go up click: `W` or `⭡`<br/>
-If you want the snake to go down click: `S` or `⭣`<br/>
+If you want the snake to go to the left click: `A` or `⭠`.<br/>
+If you want the snake to go to the right click: `D` or `⭢`.<br/>
+If you want the snake to go up click: `W` or `⭡`.<br/>
+If you want the snake to go down click: `S` or `⭣`.<br/>
 
+**When does the game end?**<br/> 
+When you hit the walls, the game is over. You can click on the `GAME HISTORY` button to see if you were able to set a new record. If you decide to start a new game, your snake will be small again.<br/>
 
+**ENJOY!**<br/>
 
+## License<br/>
 
-
-**When does the game end?**<br/>
-
-  <img src="ressources/images/history.jpg" width="330" height="260">
-  
-When you hit the walls, the game is over. You can click on the `GAME HISTORY` button to see if you were able to set a new record. If you decide to start a new game, your snake will be small again. 
-
-ENJOY!
-
-## License
-
-Copyright (C) <2021> <Aurélien, Marc, Manuel> 
+Copyright (C) <2021> <Aurélien, Marc, Manuel><br/>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published 
 by the Free Software Foundation, either version 3 of the License, or(at your option) any later version. This program is distributed 
-in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program.
-If not, see http://www.gnu.org/licenses
+in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br/>
+See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program.<br/>
+If not, see http://www.gnu.org/licenses.<br/>
