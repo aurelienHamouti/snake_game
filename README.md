@@ -25,7 +25,7 @@ Click on the green button and export the `ZIP-file` containing all the code to y
 Unzip the downloaded file.<br/>
 Open the `snake_game-main` folder and right-click on the `snake_game.py` file.<br/>
 Select `open with >` **IDLE 3.7**.<br/>
-Once the IDLE window is open, go to the `Run menu` and select **Run Module** or press **F5**.<br/>
+Once the IDLE window is open, click on the window, go to the `Run menu` and select **Run Module** or press **F5**.<br/>
 The game should start.<br/>
 
 ## Installation for WINDOWS users<br/>
